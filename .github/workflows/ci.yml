@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Recuperer le code
         uses: actions/checkout@v4
@@ -28,12 +29,16 @@ jobs:
   test:
     needs: build
     runs-on: ubuntu-latest
+
     steps:
       - name: Recuperer la compilation
         uses: actions/download-artifact@v4
         with:
           name: build-files
           path: build/
+
+      - name: Autoriser execution du test
+        run: chmod +x build/tests/test_cpu_monitor
 
       - name: Lancer les tests
         run: ctest --test-dir build --output-on-failure
