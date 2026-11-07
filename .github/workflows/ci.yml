@@ -42,3 +42,5 @@ jobs:
 
       - name: Lancer les tests
         run: ctest --test-dir build --output-on-failure
+      - name: Lancer les tests
+        run: ctest --test-dir build --output-on-failure
